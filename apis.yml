@@ -1,0 +1,7 @@
+aid: wellcare-health-plans
+url: https://raw.githubusercontent.com/api-evangelist/wellcare-health-plans/refs/heads/main/apis.yml
+modified: '2026-03-24'
+apis: []
+common:
+  - type: Website
+    url: https://www.wellcare-health-plans.com
