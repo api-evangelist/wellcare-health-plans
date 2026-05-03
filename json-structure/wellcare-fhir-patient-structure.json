@@ -1,0 +1,26 @@
+{
+  "name": "WellCare FHIR Patient",
+  "description": "Structure of a WellCare FHIR R4 Patient resource.",
+  "fields": [
+    { "name": "resourceType", "type": "string", "required": true, "description": "Always 'Patient'." },
+    { "name": "id", "type": "string", "required": true, "description": "FHIR resource ID." },
+    { "name": "meta.lastUpdated", "type": "dateTime", "required": false, "description": "Last modification time." },
+    { "name": "meta.profile", "type": "array[string]", "required": false, "description": "FHIR profile URLs." },
+    { "name": "identifier[].system", "type": "string", "required": false, "description": "Identifier namespace URI (e.g., WellCare member ID system)." },
+    { "name": "identifier[].value", "type": "string", "required": true, "description": "Member ID or other identifier value." },
+    { "name": "name[].use", "type": "string", "required": false, "description": "Name usage (official, nickname, etc.)." },
+    { "name": "name[].family", "type": "string", "required": false, "description": "Family (last) name." },
+    { "name": "name[].given[]", "type": "array[string]", "required": false, "description": "Given (first, middle) names." },
+    { "name": "birthDate", "type": "date", "required": false, "description": "Date of birth (YYYY-MM-DD)." },
+    { "name": "gender", "type": "string", "required": false, "description": "Administrative gender: male, female, other, unknown." },
+    { "name": "address[].use", "type": "string", "required": false, "description": "Address use: home, work, temp." },
+    { "name": "address[].line[]", "type": "array[string]", "required": false, "description": "Street address lines." },
+    { "name": "address[].city", "type": "string", "required": false, "description": "City." },
+    { "name": "address[].state", "type": "string", "required": false, "description": "State or province." },
+    { "name": "address[].postalCode", "type": "string", "required": false, "description": "ZIP or postal code." },
+    { "name": "address[].country", "type": "string", "required": false, "description": "Country code." },
+    { "name": "telecom[].system", "type": "string", "required": false, "description": "Contact type: phone, email, fax, etc." },
+    { "name": "telecom[].value", "type": "string", "required": false, "description": "Contact value (phone number, email address)." },
+    { "name": "telecom[].use", "type": "string", "required": false, "description": "Contact use: home, work, mobile." }
+  ]
+}

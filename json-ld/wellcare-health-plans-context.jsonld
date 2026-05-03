@@ -1,0 +1,50 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "fhir": "http://hl7.org/fhir/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "wellcare": "https://www.wellcare.com/vocab#",
+
+    "WellCareMember": "schema:Patient",
+    "WellCareProvider": "schema:Physician",
+    "WellCareOrganization": "schema:MedicalOrganization",
+    "WellCarePlan": "schema:HealthInsurancePlan",
+    "WellCareClaim": "schema:MedicalClaim",
+    "WellCarePrescription": "schema:Drug",
+    "WellCareImmunization": "schema:Immunization",
+
+    "memberId": { "@id": "schema:memberOf", "@type": "xsd:string" },
+    "memberName": { "@id": "schema:name", "@type": "xsd:string" },
+    "memberBirthDate": { "@id": "schema:birthDate", "@type": "xsd:date" },
+    "memberGender": { "@id": "schema:gender", "@type": "xsd:string" },
+    "memberAddress": { "@id": "schema:address", "@type": "schema:PostalAddress" },
+
+    "planId": { "@id": "schema:identifier", "@type": "xsd:string" },
+    "planName": { "@id": "schema:name", "@type": "xsd:string" },
+    "planType": { "@id": "wellcare:planType", "@type": "xsd:string" },
+    "planNetwork": { "@id": "wellcare:networkType", "@type": "xsd:string" },
+    "enrollmentStart": { "@id": "schema:validFrom", "@type": "xsd:date" },
+    "enrollmentEnd": { "@id": "schema:validThrough", "@type": "xsd:date" },
+
+    "claimId": { "@id": "schema:identifier", "@type": "xsd:string" },
+    "claimType": { "@id": "wellcare:claimType", "@type": "xsd:string" },
+    "serviceDate": { "@id": "schema:dateCreated", "@type": "xsd:date" },
+    "claimAmount": { "@id": "schema:price", "@type": "xsd:decimal" },
+    "benefitAmount": { "@id": "wellcare:benefitAmount", "@type": "xsd:decimal" },
+
+    "npi": { "@id": "fhir:Practitioner.identifier", "@type": "xsd:string" },
+    "providerName": { "@id": "schema:name", "@type": "xsd:string" },
+    "providerSpecialty": { "@id": "schema:medicalSpecialty" },
+    "networkStatus": { "@id": "wellcare:networkStatus", "@type": "xsd:string" },
+
+    "rxNumber": { "@id": "schema:identifier", "@type": "xsd:string" },
+    "drugName": { "@id": "schema:name", "@type": "xsd:string" },
+    "drugCode": { "@id": "fhir:MedicationRequest.medication", "@type": "xsd:string" },
+    "prescribingProvider": { "@id": "schema:performer" },
+
+    "icd10Code": { "@id": "wellcare:icd10Code", "@type": "xsd:string" },
+    "conditionName": { "@id": "schema:name", "@type": "xsd:string" },
+    "clinicalStatus": { "@id": "wellcare:clinicalStatus", "@type": "xsd:string" }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://partners.centene.com/fhir/r4/Practitioner?specialty=207Q00000X&address-postalcode=33601&_count=3",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Accept": "application/fhir+json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/fhir+json"
+    },
+    "body": {
+      "resourceType": "Bundle",
+      "id": "practitioner-bundle-001",
+      "type": "searchset",
+      "total": 12,
+      "entry": [
+        {
+          "fullUrl": "https://partners.centene.com/fhir/r4/Practitioner/prac-001",
+          "resource": {
+            "resourceType": "Practitioner",
+            "id": "prac-001",
+            "identifier": [
+              {
+                "system": "http://hl7.org/fhir/sid/us-npi",
+                "value": "1234567890"
+              }
+            ],
+            "active": true,
+            "name": [
+              {
+                "family": "Williams",
+                "given": ["Robert", "J"],
+                "prefix": ["Dr."],
+                "suffix": ["MD"]
+              }
+            ],
+            "qualification": [
+              {
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://nucc.org/provider-taxonomy",
+                      "code": "207Q00000X",
+                      "display": "Family Medicine"
+                    }
+                  ]
+                }
+              }
+            ],
+            "address": [
+              {
+                "line": ["456 Healthcare Blvd", "Suite 200"],
+                "city": "Tampa",
+                "state": "FL",
+                "postalCode": "33601"
+              }
+            ],
+            "telecom": [
+              {
+                "system": "phone",
+                "value": "813-555-0200"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

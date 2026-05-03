@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://partners.centene.com/fhir/r4/Patient/wc-patient-001",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Accept": "application/fhir+json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/fhir+json"
+    },
+    "body": {
+      "resourceType": "Patient",
+      "id": "wc-patient-001",
+      "meta": {
+        "lastUpdated": "2026-04-15T10:30:00Z",
+        "profile": ["http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient"]
+      },
+      "identifier": [
+        {
+          "system": "https://wellcare.com/member-id",
+          "value": "WC123456789"
+        }
+      ],
+      "name": [
+        {
+          "use": "official",
+          "family": "Johnson",
+          "given": ["Maria", "Elena"]
+        }
+      ],
+      "birthDate": "1968-03-22",
+      "gender": "female",
+      "address": [
+        {
+          "use": "home",
+          "line": ["123 Main Street"],
+          "city": "Tampa",
+          "state": "FL",
+          "postalCode": "33601",
+          "country": "US"
+        }
+      ],
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "813-555-0100",
+          "use": "home"
+        },
+        {
+          "system": "email",
+          "value": "m.johnson@email.com"
+        }
+      ]
+    }
+  }
+}

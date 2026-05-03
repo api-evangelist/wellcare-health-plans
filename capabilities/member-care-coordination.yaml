@@ -1,0 +1,327 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "WellCare Member Care Coordination"
+  description: >-
+    Unified care coordination capability combining WellCare FHIR Patient Access
+    and Provider Directory APIs. Enables care managers, app developers, and
+    member-facing apps to access a member's complete health record alongside
+    in-network provider and facility information for coordinated care delivery
+    across Medicaid and Medicare Advantage plans.
+  tags:
+    - Healthcare
+    - FHIR
+    - Care Coordination
+    - Patient Access
+    - Provider Directory
+    - Managed Care
+    - Medicaid
+    - Medicare
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WELLCARE_PATIENT_ACCESS_TOKEN: WELLCARE_PATIENT_ACCESS_TOKEN
+      WELLCARE_PROVIDER_DIRECTORY_TOKEN: WELLCARE_PROVIDER_DIRECTORY_TOKEN
+
+capability:
+  consumes:
+    - import: wellcare-patient-access
+      location: ./shared/fhir-patient-access.yaml
+    - import: wellcare-provider-directory
+      location: ./shared/fhir-provider-directory.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: wellcare-care-coordination-api
+      description: "Unified REST API for WellCare member care coordination."
+      resources:
+        - path: /v1/members/{id}
+          name: member-profile
+          description: "Member demographic and identity."
+          operations:
+            - method: GET
+              name: get-member
+              description: "Get member profile by FHIR Patient ID."
+              call: "wellcare-patient-access.get-patient"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/members/{id}/coverage
+          name: member-coverage
+          description: "Member insurance coverage and enrollment."
+          operations:
+            - method: GET
+              name: get-member-coverage
+              description: "Get coverage for a member."
+              call: "wellcare-patient-access.list-coverage"
+              with:
+                patient: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/members/{id}/claims
+          name: member-claims
+          description: "Member claims history."
+          operations:
+            - method: GET
+              name: get-member-claims
+              description: "Get EOB claims for a member."
+              call: "wellcare-patient-access.list-explanation-of-benefit"
+              with:
+                patient: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/members/{id}/conditions
+          name: member-conditions
+          description: "Member clinical conditions."
+          operations:
+            - method: GET
+              name: get-member-conditions
+              description: "Get conditions for a member."
+              call: "wellcare-patient-access.list-conditions"
+              with:
+                patient: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/members/{id}/medications
+          name: member-medications
+          description: "Member active medications."
+          operations:
+            - method: GET
+              name: get-member-medications
+              description: "Get medication requests for a member."
+              call: "wellcare-patient-access.list-medication-requests"
+              with:
+                patient: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/members/{id}/encounters
+          name: member-encounters
+          description: "Member care encounters."
+          operations:
+            - method: GET
+              name: get-member-encounters
+              description: "Get care encounters for a member."
+              call: "wellcare-patient-access.list-encounters"
+              with:
+                patient: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/providers
+          name: network-providers
+          description: "In-network providers."
+          operations:
+            - method: GET
+              name: search-providers
+              description: "Search in-network providers by specialty or name."
+              call: "wellcare-provider-directory.search-practitioners"
+              with:
+                name: "rest.name"
+                specialty: "rest.specialty"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/facilities
+          name: network-facilities
+          description: "In-network facilities."
+          operations:
+            - method: GET
+              name: search-facilities
+              description: "Search in-network hospitals and clinics."
+              call: "wellcare-provider-directory.search-organizations"
+              with:
+                name: "rest.name"
+                type: "rest.type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/locations
+          name: care-locations
+          description: "Care delivery locations."
+          operations:
+            - method: GET
+              name: search-locations
+              description: "Find care locations by ZIP code."
+              call: "wellcare-provider-directory.search-locations"
+              with:
+                address-postalcode: "rest.postalcode"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/plans
+          name: insurance-plans
+          description: "Insurance plan information."
+          operations:
+            - method: GET
+              name: search-plans
+              description: "Search insurance plans."
+              call: "wellcare-provider-directory.search-insurance-plans"
+              with:
+                name: "rest.name"
+                type: "rest.type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: wellcare-care-coordination-mcp
+      transport: http
+      description: "MCP server for AI-assisted WellCare member care coordination."
+      tools:
+        - name: get-member-profile
+          description: "Get a WellCare member's demographic profile and contact information."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wellcare-patient-access.get-patient"
+          with:
+            id: "tools.patient_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-member-coverage
+          description: "Get insurance coverage and enrollment details for a WellCare member."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wellcare-patient-access.list-coverage"
+          with:
+            patient: "tools.patient_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-member-claims-history
+          description: "Get historical claims and EOB data for a WellCare member. Supports up to 5 years of history."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wellcare-patient-access.list-explanation-of-benefit"
+          with:
+            patient: "tools.patient_id"
+            type: "tools.claim_type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-member-active-conditions
+          description: "Get active diagnoses and conditions for a WellCare member."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wellcare-patient-access.list-conditions"
+          with:
+            patient: "tools.patient_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-member-medications
+          description: "Get current and historical medication prescriptions for a WellCare member."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wellcare-patient-access.list-medication-requests"
+          with:
+            patient: "tools.patient_id"
+            status: "tools.status"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-member-immunization-history
+          description: "Get immunization records and history for a WellCare member."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wellcare-patient-access.list-immunizations"
+          with:
+            patient: "tools.patient_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-member-care-encounters
+          description: "Get care visit and encounter history for a WellCare member."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wellcare-patient-access.list-encounters"
+          with:
+            patient: "tools.patient_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-in-network-providers
+          description: "Search for in-network WellCare providers by name or specialty."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wellcare-provider-directory.search-practitioners"
+          with:
+            name: "tools.provider_name"
+            specialty: "tools.specialty"
+            identifier: "tools.npi"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: find-network-facilities
+          description: "Search for in-network hospitals, clinics, and healthcare facilities."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wellcare-provider-directory.search-organizations"
+          with:
+            name: "tools.facility_name"
+            type: "tools.facility_type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: find-care-locations-near-zip
+          description: "Find WellCare in-network care delivery locations near a ZIP code."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wellcare-provider-directory.search-locations"
+          with:
+            address-postalcode: "tools.zip_code"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-plan-information
+          description: "Get WellCare insurance plan details including network and benefit information."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wellcare-provider-directory.search-insurance-plans"
+          with:
+            name: "tools.plan_name"
+            type: "tools.plan_type"
+          outputParameters:
+            - type: object
+              mapping: "$."

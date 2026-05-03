@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/wellcare-health-plans/main/json-schema/wellcare-fhir-patient-schema.json",
+  "title": "WellCare FHIR Patient",
+  "description": "FHIR R4 Patient resource schema for WellCare Medicaid and Medicare Advantage members. Represents a healthcare consumer receiving care or other health-related services.",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "const": "Patient",
+      "description": "FHIR resource type identifier."
+    },
+    "id": {
+      "type": "string",
+      "description": "Logical FHIR resource ID."
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "lastUpdated": { "type": "string", "format": "date-time" },
+        "profile": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "identifier": {
+      "type": "array",
+      "description": "Patient identifiers including WellCare member ID.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "description": "Identifier system URI."
+          },
+          "value": {
+            "type": "string",
+            "description": "Identifier value."
+          }
+        },
+        "required": ["value"]
+      }
+    },
+    "name": {
+      "type": "array",
+      "description": "Patient name(s).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "use": {
+            "type": "string",
+            "enum": ["usual", "official", "temp", "nickname", "anonymous", "old", "maiden"]
+          },
+          "family": { "type": "string" },
+          "given": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "prefix": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "suffix": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "birthDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Patient date of birth (YYYY-MM-DD)."
+    },
+    "gender": {
+      "type": "string",
+      "enum": ["male", "female", "other", "unknown"],
+      "description": "Administrative gender."
+    },
+    "address": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "use": {
+            "type": "string",
+            "enum": ["home", "work", "temp", "old", "billing"]
+          },
+          "line": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "city": { "type": "string" },
+          "state": { "type": "string" },
+          "postalCode": { "type": "string" },
+          "country": { "type": "string" }
+        }
+      }
+    },
+    "telecom": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string",
+            "enum": ["phone", "fax", "email", "pager", "url", "sms", "other"]
+          },
+          "value": { "type": "string" },
+          "use": {
+            "type": "string",
+            "enum": ["home", "work", "temp", "old", "mobile"]
+          }
+        }
+      }
+    }
+  },
+  "required": ["resourceType", "id"]
+}

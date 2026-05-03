@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/wellcare-health-plans/main/json-schema/wellcare-fhir-eob-schema.json",
+  "title": "WellCare FHIR Explanation of Benefit",
+  "description": "FHIR R4 ExplanationOfBenefit resource schema for WellCare Medicaid and Medicare Advantage adjudicated claims. Represents medical, pharmacy, dental, and vision claims.",
+  "type": "object",
+  "properties": {
+    "resourceType": {
+      "type": "string",
+      "const": "ExplanationOfBenefit"
+    },
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "cancelled", "draft", "entered-in-error"]
+    },
+    "type": {
+      "type": "object",
+      "description": "Claim type (pharmacy, oral, vision, institutional, professional).",
+      "properties": {
+        "coding": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": { "type": "string" },
+              "code": { "type": "string" },
+              "display": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "patient": {
+      "type": "object",
+      "properties": {
+        "reference": { "type": "string" }
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date"
+    },
+    "billablePeriod": {
+      "type": "object",
+      "properties": {
+        "start": { "type": "string", "format": "date" },
+        "end": { "type": "string", "format": "date" }
+      }
+    },
+    "item": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sequence": { "type": "integer" },
+          "productOrService": {
+            "type": "object",
+            "properties": {
+              "coding": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "system": { "type": "string" },
+                    "code": { "type": "string" },
+                    "display": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "quantity": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "number" },
+              "unit": { "type": "string" }
+            }
+          },
+          "adjudication": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": { "type": "object" },
+                "amount": {
+                  "type": "object",
+                  "properties": {
+                    "value": { "type": "number" },
+                    "currency": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "total": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": { "type": "object" },
+          "amount": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "number" },
+              "currency": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["resourceType", "id", "status", "type", "patient"]
+}

@@ -1,0 +1,96 @@
+vocabulary:
+  provider: WellCare Health Plans (Centene)
+  description: >-
+    Vocabulary for WellCare Health Plans, a Centene subsidiary providing
+    Medicaid, Medicare Advantage, and Medicare Prescription Drug Plans. Covers
+    managed care, FHIR interoperability, healthcare data exchange, and CMS
+    compliance terminology.
+  tags:
+    - Healthcare
+    - Managed Care
+    - Medicaid
+    - Medicare
+    - FHIR
+    - Interoperability
+
+  domains:
+    - name: Plan Types and Programs
+      terms:
+        - term: Medicaid
+          definition: Joint federal-state health coverage program for low-income individuals managed by WellCare under state contracts.
+        - term: Medicare Advantage
+          definition: Medicare Part C private health plan alternative offered by WellCare with additional benefits beyond Original Medicare.
+        - term: Medicare Prescription Drug Plan
+          definition: Medicare Part D standalone prescription drug coverage plan offered by WellCare.
+        - term: SNP (Special Needs Plan)
+          definition: Medicare Advantage plan tailored for individuals with specific diseases, dual eligibility, or institutional care needs.
+        - term: Dual Eligible
+          definition: Member eligible for both Medicaid and Medicare simultaneously.
+        - term: Centene
+          definition: Parent company that acquired WellCare Health Plans, operating as one of the largest managed care organizations in the US.
+
+    - name: Member and Care Management
+      terms:
+        - term: Member
+          definition: An individual enrolled in a WellCare health plan.
+        - term: Member ID
+          definition: Unique identifier assigned to each WellCare plan member.
+        - term: Care Management
+          definition: Coordinated programs to help members manage chronic conditions and navigate the healthcare system.
+        - term: Case Manager
+          definition: Clinical professional who coordinates care for high-risk WellCare members.
+        - term: Prior Authorization
+          definition: Approval required from WellCare before certain services or medications are covered.
+        - term: Formulary
+          definition: List of prescription drugs covered under a WellCare Medicare Part D or Medicaid plan.
+
+    - name: FHIR and Interoperability
+      terms:
+        - term: FHIR
+          definition: Fast Healthcare Interoperability Resources - HL7 standard for exchanging healthcare data electronically.
+        - term: FHIR R4
+          definition: Release 4 of the FHIR standard, the version required by CMS interoperability rules.
+        - term: SMART on FHIR
+          definition: OAuth 2.0-based authorization framework for FHIR-enabled health apps accessing member data.
+        - term: Patient Access API
+          definition: CMS-required FHIR API allowing members to access their health data through third-party apps.
+        - term: Provider Directory API
+          definition: CMS-required FHIR API providing machine-readable in-network provider directory data.
+        - term: CMS-9115-F
+          definition: CMS Interoperability and Patient Access final rule requiring Medicaid and Medicare Advantage plans to publish FHIR APIs.
+        - term: EOB (Explanation of Benefits)
+          definition: FHIR ExplanationOfBenefit resource representing an adjudicated claim showing services, costs, and payments.
+        - term: Da Vinci PDex Plan-Net
+          definition: HL7 implementation guide for FHIR-based provider directory data exchange.
+
+    - name: Claims and Benefits
+      terms:
+        - term: Claim
+          definition: Request for payment submitted to WellCare by a provider for services rendered.
+        - term: Adjudication
+          definition: WellCare's process of evaluating and processing a claim for payment.
+        - term: Copay
+          definition: Fixed out-of-pocket amount a member pays for a covered service.
+        - term: Coinsurance
+          definition: Percentage of costs a member pays after meeting the deductible.
+        - term: Deductible
+          definition: Amount a member pays out-of-pocket before WellCare coverage begins.
+        - term: Out-of-Pocket Maximum
+          definition: Maximum amount a member pays in a plan year before WellCare covers 100% of covered costs.
+        - term: HEDIS
+          definition: Healthcare Effectiveness Data and Information Set - performance measures used to evaluate health plan quality.
+
+    - name: Provider Network
+      terms:
+        - term: In-Network
+          definition: Healthcare provider who has contracted with WellCare to provide services at negotiated rates.
+        - term: Out-of-Network
+          definition: Provider who has not contracted with WellCare; may result in higher member cost-sharing.
+        - term: NPI
+          definition: National Provider Identifier - 10-digit standard identifier for healthcare providers.
+        - term: PCP (Primary Care Provider)
+          definition: Provider responsible for coordinating a member's overall healthcare.
+        - term: Specialist
+          definition: Provider with advanced training in a specific area of medicine.
+        - term: Taxonomy Code
+          definition: NUCC Health Care Provider Taxonomy code classifying a provider's specialty.
