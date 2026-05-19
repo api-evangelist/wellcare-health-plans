@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WellCare FHIR Patient Access API — Observation
+  description: 'WellCare FHIR Patient Access API — Observation. 1 operations. Lead operation: List Observations. Self-contained
+    Naftiko capability covering one Wellcare Health Plans business surface.'
+  tags:
+  - Wellcare Health Plans
+  - Observation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WELLCARE_HEALTH_PLANS_API_KEY: WELLCARE_HEALTH_PLANS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wellcare-fhir-patient-access-observation
+    baseUri: https://partners.centene.com
+    description: WellCare FHIR Patient Access API — Observation business capability. Self-contained, no shared references.
+    resources:
+    - name: fhir-r4-Observation
+      path: /fhir/r4/Observation
+      operations:
+      - name: listobservations
+        method: GET
+        description: List Observations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: patient
+          in: query
+          type: string
+          description: The FHIR Patient ID.
+          required: true
+        - name: category
+          in: query
+          type: string
+          description: Filter by observation category (e.g., laboratory, vital-signs).
+    authentication:
+      type: bearer
+      token: '{{env.WELLCARE_HEALTH_PLANS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: wellcare-fhir-patient-access-observation-rest
+    port: 8080
+    description: REST adapter for WellCare FHIR Patient Access API — Observation. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/fhir/r4/observation
+      name: fhir-r4-observation
+      description: REST surface for fhir-r4-Observation.
+      operations:
+      - method: GET
+        name: listobservations
+        description: List Observations
+        call: wellcare-fhir-patient-access-observation.listobservations
+        with:
+          patient: rest.patient
+          category: rest.category
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wellcare-fhir-patient-access-observation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WellCare FHIR Patient Access API — Observation. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-observations
+      description: List Observations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wellcare-fhir-patient-access-observation.listobservations
+      with:
+        patient: tools.patient
+        category: tools.category
+      outputParameters:
+      - type: object
+        mapping: $.

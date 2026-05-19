@@ -1,0 +1,85 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WellCare FHIR Provider Directory API — Insurance Plan
+  description: 'WellCare FHIR Provider Directory API — Insurance Plan. 1 operations. Lead operation: Search Insurance Plans.
+    Self-contained Naftiko capability covering one Wellcare Health Plans business surface.'
+  tags:
+  - Wellcare Health Plans
+  - Insurance Plan
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WELLCARE_HEALTH_PLANS_API_KEY: WELLCARE_HEALTH_PLANS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wellcare-fhir-provider-directory-insurance-plan
+    baseUri: https://partners.centene.com
+    description: WellCare FHIR Provider Directory API — Insurance Plan business capability. Self-contained, no shared references.
+    resources:
+    - name: fhir-r4-InsurancePlan
+      path: /fhir/r4/InsurancePlan
+      operations:
+      - name: searchinsuranceplans
+        method: GET
+        description: Search Insurance Plans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: Insurance plan name.
+        - name: type
+          in: query
+          type: string
+          description: Plan type (e.g., HMO, PPO, SNP).
+    authentication:
+      type: bearer
+      token: '{{env.WELLCARE_HEALTH_PLANS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: wellcare-fhir-provider-directory-insurance-plan-rest
+    port: 8080
+    description: REST adapter for WellCare FHIR Provider Directory API — Insurance Plan. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/fhir/r4/insuranceplan
+      name: fhir-r4-insuranceplan
+      description: REST surface for fhir-r4-InsurancePlan.
+      operations:
+      - method: GET
+        name: searchinsuranceplans
+        description: Search Insurance Plans
+        call: wellcare-fhir-provider-directory-insurance-plan.searchinsuranceplans
+        with:
+          name: rest.name
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wellcare-fhir-provider-directory-insurance-plan-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WellCare FHIR Provider Directory API — Insurance Plan. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: search-insurance-plans
+      description: Search Insurance Plans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wellcare-fhir-provider-directory-insurance-plan.searchinsuranceplans
+      with:
+        name: tools.name
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.

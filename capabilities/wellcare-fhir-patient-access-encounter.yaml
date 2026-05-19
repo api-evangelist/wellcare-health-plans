@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WellCare FHIR Patient Access API — Encounter
+  description: 'WellCare FHIR Patient Access API — Encounter. 1 operations. Lead operation: List Encounters. Self-contained
+    Naftiko capability covering one Wellcare Health Plans business surface.'
+  tags:
+  - Wellcare Health Plans
+  - Encounter
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WELLCARE_HEALTH_PLANS_API_KEY: WELLCARE_HEALTH_PLANS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wellcare-fhir-patient-access-encounter
+    baseUri: https://partners.centene.com
+    description: WellCare FHIR Patient Access API — Encounter business capability. Self-contained, no shared references.
+    resources:
+    - name: fhir-r4-Encounter
+      path: /fhir/r4/Encounter
+      operations:
+      - name: listencounters
+        method: GET
+        description: List Encounters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: patient
+          in: query
+          type: string
+          description: The FHIR Patient ID.
+          required: true
+        - name: date
+          in: query
+          type: string
+          description: Filter by encounter date range.
+    authentication:
+      type: bearer
+      token: '{{env.WELLCARE_HEALTH_PLANS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: wellcare-fhir-patient-access-encounter-rest
+    port: 8080
+    description: REST adapter for WellCare FHIR Patient Access API — Encounter. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/fhir/r4/encounter
+      name: fhir-r4-encounter
+      description: REST surface for fhir-r4-Encounter.
+      operations:
+      - method: GET
+        name: listencounters
+        description: List Encounters
+        call: wellcare-fhir-patient-access-encounter.listencounters
+        with:
+          patient: rest.patient
+          date: rest.date
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wellcare-fhir-patient-access-encounter-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WellCare FHIR Patient Access API — Encounter. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-encounters
+      description: List Encounters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wellcare-fhir-patient-access-encounter.listencounters
+      with:
+        patient: tools.patient
+        date: tools.date
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,92 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WellCare FHIR Patient Access API — Coverage
+  description: 'WellCare FHIR Patient Access API — Coverage. 1 operations. Lead operation: List Coverage. Self-contained Naftiko
+    capability covering one Wellcare Health Plans business surface.'
+  tags:
+  - Wellcare Health Plans
+  - Coverage
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WELLCARE_HEALTH_PLANS_API_KEY: WELLCARE_HEALTH_PLANS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wellcare-fhir-patient-access-coverage
+    baseUri: https://partners.centene.com
+    description: WellCare FHIR Patient Access API — Coverage business capability. Self-contained, no shared references.
+    resources:
+    - name: fhir-r4-Coverage
+      path: /fhir/r4/Coverage
+      operations:
+      - name: listcoverage
+        method: GET
+        description: List Coverage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: patient
+          in: query
+          type: string
+          description: The FHIR Patient ID to retrieve coverage for.
+          required: true
+        - name: _count
+          in: query
+          type: integer
+          description: Number of results per page.
+        - name: _page
+          in: query
+          type: integer
+          description: Page number for paginated results.
+    authentication:
+      type: bearer
+      token: '{{env.WELLCARE_HEALTH_PLANS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: wellcare-fhir-patient-access-coverage-rest
+    port: 8080
+    description: REST adapter for WellCare FHIR Patient Access API — Coverage. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/fhir/r4/coverage
+      name: fhir-r4-coverage
+      description: REST surface for fhir-r4-Coverage.
+      operations:
+      - method: GET
+        name: listcoverage
+        description: List Coverage
+        call: wellcare-fhir-patient-access-coverage.listcoverage
+        with:
+          patient: rest.patient
+          _count: rest._count
+          _page: rest._page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wellcare-fhir-patient-access-coverage-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WellCare FHIR Patient Access API — Coverage. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-coverage
+      description: List Coverage
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wellcare-fhir-patient-access-coverage.listcoverage
+      with:
+        patient: tools.patient
+        _count: tools._count
+        _page: tools._page
+      outputParameters:
+      - type: object
+        mapping: $.

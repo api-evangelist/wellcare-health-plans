@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WellCare FHIR Provider Directory API — Location
+  description: 'WellCare FHIR Provider Directory API — Location. 1 operations. Lead operation: Search Locations. Self-contained
+    Naftiko capability covering one Wellcare Health Plans business surface.'
+  tags:
+  - Wellcare Health Plans
+  - Location
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WELLCARE_HEALTH_PLANS_API_KEY: WELLCARE_HEALTH_PLANS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wellcare-fhir-provider-directory-location
+    baseUri: https://partners.centene.com
+    description: WellCare FHIR Provider Directory API — Location business capability. Self-contained, no shared references.
+    resources:
+    - name: fhir-r4-Location
+      path: /fhir/r4/Location
+      operations:
+      - name: searchlocations
+        method: GET
+        description: Search Locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: address-postalcode
+          in: query
+          type: string
+          description: ZIP code for location search.
+        - name: near
+          in: query
+          type: string
+          description: Coordinate-based proximity search (latitude|longitude|distance|units).
+        - name: _count
+          in: query
+          type: integer
+          description: Number of results per page.
+    authentication:
+      type: bearer
+      token: '{{env.WELLCARE_HEALTH_PLANS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: wellcare-fhir-provider-directory-location-rest
+    port: 8080
+    description: REST adapter for WellCare FHIR Provider Directory API — Location. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/fhir/r4/location
+      name: fhir-r4-location
+      description: REST surface for fhir-r4-Location.
+      operations:
+      - method: GET
+        name: searchlocations
+        description: Search Locations
+        call: wellcare-fhir-provider-directory-location.searchlocations
+        with:
+          address-postalcode: rest.address-postalcode
+          near: rest.near
+          _count: rest._count
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wellcare-fhir-provider-directory-location-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WellCare FHIR Provider Directory API — Location. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: search-locations
+      description: Search Locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wellcare-fhir-provider-directory-location.searchlocations
+      with:
+        address-postalcode: tools.address-postalcode
+        near: tools.near
+        _count: tools._count
+      outputParameters:
+      - type: object
+        mapping: $.
