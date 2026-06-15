@@ -1,0 +1,354 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WellCare FHIR Patient Access API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patient",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/Patient/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The FHIR Patient resource ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves a patient resource by FHIR Patient ID for an authenticated member, returning demographic information including name, birthdate, address, and contact details."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Coverage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Coverage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/Coverage",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The FHIR Patient ID to retrieve coverage for."
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves insurance coverage resources for a member, including plan details, enrollment period, group information, and benefit categories for medical, pharmacy, dental, and vision coverage."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Explanation of Benefits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Explanation of Benefit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/ExplanationOfBenefit",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The FHIR Patient ID to retrieve EOBs for."
+              },
+              {
+                "name": "service-date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by service date range (format YYYY-MM-DD or YYYY-MM-DD,YYYY-MM-DD)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by claim type (e.g., pharmacy, oral, vision, institutional, professional)."
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves Explanation of Benefit (EOB) resources representing adjudicated medical, pharmacy, dental, and vision claims for a member. Supports up to 5 years of historical claims data as required by CMS interoperability rules."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Condition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/Condition",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The FHIR Patient ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves Condition resources representing a member's diagnosed conditions, including ICD-10 codes, clinical status, and onset dates from clinical data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Observation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Observations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/Observation",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The FHIR Patient ID."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by observation category (e.g., laboratory, vital-signs)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves Observation resources including laboratory results, vital signs, and other clinical measurements for an authenticated member."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Medication Request",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Medication Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/MedicationRequest",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The FHIR Patient ID."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by medication request status (active, completed, stopped)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves MedicationRequest resources representing prescribed medications and medication orders for an authenticated member."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Immunization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Immunizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/Immunization",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The FHIR Patient ID."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves Immunization resources representing a member's immunization history including vaccine type, administration date, and lot number."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Encounter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Encounters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/Encounter",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The FHIR Patient ID."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by encounter date range."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves Encounter resources representing care encounters, visits, and admissions for an authenticated member, including encounter type, date, provider, and location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
