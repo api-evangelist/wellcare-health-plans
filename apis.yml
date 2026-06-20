@@ -35,7 +35,7 @@ apis:
       - Managed Care
       - Medicaid
       - Medicare
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://partners.centene.com
     humanURL: https://www.wellcare.com/en/interoperability-and-patient-access
     properties:
@@ -73,7 +73,7 @@ apis:
       - Managed Care
       - Medicaid
       - Medicare
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://partners.centene.com
     humanURL: https://www.wellcare.com/en/interoperability-and-patient-access
     properties:
