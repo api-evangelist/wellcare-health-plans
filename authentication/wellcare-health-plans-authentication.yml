@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/wellcare-fhir-patient-access-api-openapi.yml, openapi/wellcare-fhir-provider-directory-api-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: smartOnFhir
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://partners.centene.com/oauth2/authorize
+    tokenUrl: https://partners.centene.com/oauth2/token
+    scopes: 8
+  description: SMART on FHIR OAuth 2.0 authorization for patient-facing apps.
+  sources:
+  - openapi/wellcare-fhir-patient-access-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer token from Centene Partner Portal OAuth 2.0 authorization.
+  sources:
+  - openapi/wellcare-fhir-provider-directory-api-openapi.yml
