@@ -1,0 +1,60 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/wellcare-fhir-patient-access-api-openapi.yml
+schemes:
+- name: smartOnFhir
+  source: openapi/wellcare-fhir-patient-access-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://partners.centene.com/oauth2/authorize
+    tokenUrl: https://partners.centene.com/oauth2/token
+  description: SMART on FHIR OAuth 2.0 authorization for patient-facing apps.
+scopes:
+- scope: patient/Condition.read
+  description: Read diagnosed conditions
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/wellcare-fhir-patient-access-api-openapi.yml
+- scope: patient/Coverage.read
+  description: Read coverage and enrollment data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/wellcare-fhir-patient-access-api-openapi.yml
+- scope: patient/Encounter.read
+  description: Read care encounters
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/wellcare-fhir-patient-access-api-openapi.yml
+- scope: patient/ExplanationOfBenefit.read
+  description: Read claims and EOB data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/wellcare-fhir-patient-access-api-openapi.yml
+- scope: patient/Immunization.read
+  description: Read immunization records
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/wellcare-fhir-patient-access-api-openapi.yml
+- scope: patient/MedicationRequest.read
+  description: Read medication requests
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/wellcare-fhir-patient-access-api-openapi.yml
+- scope: patient/Observation.read
+  description: Read observations and lab results
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/wellcare-fhir-patient-access-api-openapi.yml
+- scope: patient/Patient.read
+  description: Read patient demographic data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/wellcare-fhir-patient-access-api-openapi.yml
