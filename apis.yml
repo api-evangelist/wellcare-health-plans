@@ -10,6 +10,8 @@ description: >-
   access as required by CMS Interoperability and Patient Access final rules (CMS-9115-F). The Centene Developer Partner
   Portal at partners.centene.com/apis provides access to WellCare FHIR APIs.
 common:
+  - type: AgenticAccess
+    url: agentic-access/wellcare-health-plans-agentic-access.yml
   - type: DomainSecurity
     url: security/wellcare-health-plans-domain-security.yml
   - type: Authentication
