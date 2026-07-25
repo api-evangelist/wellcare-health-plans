@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: WellCare FHIR Access Condition Patient API
+  description: The WellCare FHIR Patient Access API enables members and authorized third-party applications to securely access and exchange health data including medical, pharmacy, dental, and vision claims and clinical information. The API supports HL7 FHIR R4 standards and SMART on FHIR authorization, providing access to up to 5 years of historical health information. Required under CMS Interoperability and Patient Access final rule (CMS-9115-F) for Medicaid and Medicare Advantage plans. Access is managed through the Centene Partner Portal at partners.centene.com/apis.
+  version: '1.0'
+  contact:
+    url: https://www.wellcare.com/en/interoperability-and-patient-access
+servers:
+- url: https://partners.centene.com
+tags:
+- name: Patient
+  description: Patient demographic and identity resources.
+paths:
+  /fhir/r4/Patient/{id}:
+    get:
+      operationId: getPatient
+      summary: Get Patient
+      description: Retrieves a patient resource by FHIR Patient ID for an authenticated member, returning demographic information including name, birthdate, address, and contact details.
+      tags:
+      - Patient
+      parameters:
+      - name: id
+        in: path
+        description: The FHIR Patient resource ID.
+        required: true
+        schema:
+          type: string
+      security:
+      - smartOnFhir:
+        - patient/Patient.read
+      responses:
+        '200':
+          description: Patient resource returned successfully.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+        '401':
+          description: Unauthorized - invalid or missing access token.
+        '404':
+          description: Patient not found.
+components:
+  schemas:
+    Patient:
+      type: object
+      description: A FHIR Patient resource.
+      properties:
+        resourceType:
+          type: string
+          example: Patient
+        id:
+          type: string
+        name:
+          type: array
+          items:
+            type: object
+            properties:
+              family:
+                type: string
+              given:
+                type: array
+                items:
+                  type: string
+        birthDate:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum:
+          - male
+          - female
+          - other
+          - unknown
+        address:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    smartOnFhir:
+      type: oauth2
+      description: SMART on FHIR OAuth 2.0 authorization for patient-facing apps.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://partners.centene.com/oauth2/authorize
+          tokenUrl: https://partners.centene.com/oauth2/token
+          scopes:
+            patient/Patient.read: Read patient demographic data
+            patient/Coverage.read: Read coverage and enrollment data
+            patient/ExplanationOfBenefit.read: Read claims and EOB data
+            patient/Condition.read: Read diagnosed conditions
+            patient/Observation.read: Read observations and lab results
+            patient/MedicationRequest.read: Read medication requests
+            patient/Immunization.read: Read immunization records
+            patient/Encounter.read: Read care encounters
