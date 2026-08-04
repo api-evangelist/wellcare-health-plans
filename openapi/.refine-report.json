@@ -1,0 +1,38 @@
+{
+  "provider": "wellcare-health-plans",
+  "sources": [
+    "wellcare-health-plans-condition-api-openapi.yml",
+    "wellcare-health-plans-coverage-api-openapi.yml",
+    "wellcare-health-plans-encounter-api-openapi.yml",
+    "wellcare-health-plans-explanation-of-benefits-api-openapi.yml",
+    "wellcare-health-plans-immunization-api-openapi.yml",
+    "wellcare-health-plans-insurance-plan-api-openapi.yml",
+    "wellcare-health-plans-location-api-openapi.yml",
+    "wellcare-health-plans-medication-request-api-openapi.yml",
+    "wellcare-health-plans-observation-api-openapi.yml",
+    "wellcare-health-plans-organization-api-openapi.yml",
+    "wellcare-health-plans-patient-api-openapi.yml",
+    "wellcare-health-plans-practitioner-api-openapi.yml",
+    "wellcare-health-plans-practitioner-role-api-openapi.yml"
+  ],
+  "outputs": [
+    "wellcare-health-plans-condition-api-openapi.yml",
+    "wellcare-health-plans-coverage-api-openapi.yml",
+    "wellcare-health-plans-encounter-api-openapi.yml",
+    "wellcare-health-plans-explanation-of-benefits-api-openapi.yml",
+    "wellcare-health-plans-immunization-api-openapi.yml",
+    "wellcare-health-plans-insurance-plan-api-openapi.yml",
+    "wellcare-health-plans-location-api-openapi.yml",
+    "wellcare-health-plans-medication-request-api-openapi.yml",
+    "wellcare-health-plans-observation-api-openapi.yml",
+    "wellcare-health-plans-organization-api-openapi.yml",
+    "wellcare-health-plans-patient-api-openapi.yml",
+    "wellcare-health-plans-practitioner-api-openapi.yml",
+    "wellcare-health-plans-practitioner-role-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

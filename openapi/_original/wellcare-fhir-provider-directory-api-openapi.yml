@@ -1,0 +1,363 @@
+openapi: 3.1.0
+info:
+  title: WellCare FHIR Provider Directory API
+  description: >-
+    The WellCare FHIR Provider Directory API provides access to up-to-date
+    provider directory information, enabling third-party applications to query
+    in-network physicians, specialists, hospitals, and other healthcare
+    providers. The API follows HL7 FHIR R4 standards and the Da Vinci Provider
+    Directory implementation guide (PDex Plan-Net), supporting CMS
+    interoperability requirements for Medicaid and Medicare Advantage plans.
+    Access is managed through the Centene Partner Portal at
+    partners.centene.com/apis.
+  version: '1.0'
+  contact:
+    url: https://www.wellcare.com/en/interoperability-and-patient-access
+servers:
+  - url: https://partners.centene.com
+tags:
+  - name: Practitioner
+    description: Individual healthcare practitioners and clinicians.
+  - name: Organization
+    description: Healthcare organizations, hospitals, and facilities.
+  - name: Location
+    description: Physical care delivery locations and addresses.
+  - name: Practitioner Role
+    description: A practitioner's role within an organization and network.
+  - name: Healthcare Service
+    description: Services and specialties offered at locations.
+  - name: Insurance Plan
+    description: Insurance plan details including networks and coverage areas.
+paths:
+  /fhir/r4/Practitioner:
+    get:
+      operationId: searchPractitioners
+      summary: Search Practitioners
+      description: >-
+        Searches for healthcare practitioners in the WellCare provider directory
+        by name, specialty, NPI, or location. Returns practitioner demographic
+        information, credentials, and specialties.
+      tags:
+        - Practitioner
+      parameters:
+        - name: name
+          in: query
+          description: Practitioner name (partial match supported).
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: NPI or other practitioner identifier.
+          schema:
+            type: string
+        - name: specialty
+          in: query
+          description: NUCC taxonomy code or specialty name.
+          schema:
+            type: string
+        - name: _count
+          in: query
+          description: Number of results per page.
+          schema:
+            type: integer
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Bundle of Practitioner resources returned.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+  /fhir/r4/Practitioner/{id}:
+    get:
+      operationId: getPractitioner
+      summary: Get Practitioner
+      description: >-
+        Retrieves a specific practitioner resource by FHIR ID, returning
+        full demographic and credential information.
+      tags:
+        - Practitioner
+      parameters:
+        - name: id
+          in: path
+          description: The FHIR Practitioner resource ID.
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Practitioner resource returned.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Practitioner'
+        '404':
+          description: Practitioner not found.
+  /fhir/r4/Organization:
+    get:
+      operationId: searchOrganizations
+      summary: Search Organizations
+      description: >-
+        Searches for healthcare organizations, hospitals, clinics, and
+        facilities in the WellCare provider network by name, type, or NPI.
+      tags:
+        - Organization
+      parameters:
+        - name: name
+          in: query
+          description: Organization name (partial match supported).
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: NPI or other organization identifier.
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Organization type (e.g., hospital, clinic, pharmacy).
+          schema:
+            type: string
+        - name: _count
+          in: query
+          description: Number of results per page.
+          schema:
+            type: integer
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Bundle of Organization resources returned.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+  /fhir/r4/Organization/{id}:
+    get:
+      operationId: getOrganization
+      summary: Get Organization
+      description: >-
+        Retrieves a specific organization resource by FHIR ID.
+      tags:
+        - Organization
+      parameters:
+        - name: id
+          in: path
+          description: The FHIR Organization resource ID.
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Organization resource returned.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          description: Organization not found.
+  /fhir/r4/Location:
+    get:
+      operationId: searchLocations
+      summary: Search Locations
+      description: >-
+        Searches for care delivery locations by address, ZIP code, or proximity
+        to a given coordinate. Returns location details, hours, accessibility,
+        and available services.
+      tags:
+        - Location
+      parameters:
+        - name: address-postalcode
+          in: query
+          description: ZIP code for location search.
+          schema:
+            type: string
+        - name: near
+          in: query
+          description: Coordinate-based proximity search (latitude|longitude|distance|units).
+          schema:
+            type: string
+        - name: _count
+          in: query
+          description: Number of results per page.
+          schema:
+            type: integer
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Bundle of Location resources returned.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+  /fhir/r4/PractitionerRole:
+    get:
+      operationId: searchPractitionerRoles
+      summary: Search Practitioner Roles
+      description: >-
+        Searches for practitioner roles defining a practitioner's relationship
+        with a healthcare organization and network, including specialties,
+        accepted insurance plans, and care location affiliations.
+      tags:
+        - Practitioner Role
+      parameters:
+        - name: practitioner
+          in: query
+          description: FHIR Practitioner ID.
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: FHIR Organization ID.
+          schema:
+            type: string
+        - name: specialty
+          in: query
+          description: Specialty taxonomy code.
+          schema:
+            type: string
+        - name: location
+          in: query
+          description: FHIR Location ID.
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Bundle of PractitionerRole resources returned.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+  /fhir/r4/InsurancePlan:
+    get:
+      operationId: searchInsurancePlans
+      summary: Search Insurance Plans
+      description: >-
+        Retrieves WellCare insurance plan details including plan types,
+        network coverage areas, benefit categories, and cost-sharing
+        information for Medicaid and Medicare Advantage plans.
+      tags:
+        - Insurance Plan
+      parameters:
+        - name: name
+          in: query
+          description: Insurance plan name.
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Plan type (e.g., HMO, PPO, SNP).
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Bundle of InsurancePlan resources returned.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token from Centene Partner Portal OAuth 2.0 authorization.
+  schemas:
+    Bundle:
+      type: object
+      description: A FHIR Bundle resource containing a collection of resources.
+      properties:
+        resourceType:
+          type: string
+          example: Bundle
+        id:
+          type: string
+        type:
+          type: string
+          enum: [searchset, collection]
+        total:
+          type: integer
+        link:
+          type: array
+          items:
+            type: object
+            properties:
+              relation:
+                type: string
+              url:
+                type: string
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              fullUrl:
+                type: string
+              resource:
+                type: object
+    Practitioner:
+      type: object
+      description: A FHIR Practitioner resource representing a healthcare clinician.
+      properties:
+        resourceType:
+          type: string
+          example: Practitioner
+        id:
+          type: string
+        identifier:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              value:
+                type: string
+        name:
+          type: array
+          items:
+            type: object
+            properties:
+              family:
+                type: string
+              given:
+                type: array
+                items:
+                  type: string
+        qualification:
+          type: array
+          items:
+            type: object
+    Organization:
+      type: object
+      description: A FHIR Organization resource representing a healthcare organization.
+      properties:
+        resourceType:
+          type: string
+          example: Organization
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: array
+          items:
+            type: object
+        address:
+          type: array
+          items:
+            type: object
+        telecom:
+          type: array
+          items:
+            type: object
