@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "23a20915-1432-40df-8ec5-ab677b64ad06",
+      "name": "Location",
+      "description": {
+        "content": "Physical care delivery locations and addresses.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8aaaa856-c09c-4cb3-8347-da12d6417f54",
+          "name": "Search Locations",
+          "request": {
+            "name": "Search Locations",
+            "description": {
+              "content": "Searches for care delivery locations by address, ZIP code, or proximity to a given coordinate. Returns location details, hours, accessibility, and available services.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fhir",
+                "r4",
+                "Location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address-postalcode",
+                  "value": "<string>",
+                  "description": "ZIP code for location search."
+                },
+                {
+                  "disabled": false,
+                  "key": "near",
+                  "value": "<string>",
+                  "description": "Coordinate-based proximity search (latitude|longitude|distance|units)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "<integer>",
+                  "description": "Number of results per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "0a33e2fa-8821-4bf2-b1dd-52b0ed706583",
+              "name": "Bundle of Location resources returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fhir",
+                    "r4",
+                    "Location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address-postalcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "near",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"Bundle\",\n  \"id\": \"string\",\n  \"type\": \"searchset\",\n  \"total\": 9904,\n  \"link\": [\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    },\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.centene.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aa8c32b4-9228-4bbc-88e3-b05753a6df61",
+    "name": "WellCare FHIR Patient Access Condition Location API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The WellCare FHIR Patient Access API enables members and authorized third-party applications to securely access and exchange health data including medical, pharmacy, dental, and vision claims and clinical information. The API supports HL7 FHIR R4 standards and SMART on FHIR authorization, providing access to up to 5 years of historical health information. Required under CMS Interoperability and Patient Access final rule (CMS-9115-F) for Medicaid and Medicare Advantage plans. Access is managed through the Centene Partner Portal at partners.centene.com/apis.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "item": [
+    {
+      "id": "e2f8a4ab-a2b6-457a-ab63-e4ffd4469daa",
+      "name": "Medication Request",
+      "description": {
+        "content": "Prescribed medications and medication orders.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8bf577ca-a929-423e-a496-e727a15595f5",
+          "name": "List Medication Requests",
+          "request": {
+            "name": "List Medication Requests",
+            "description": {
+              "content": "Retrieves MedicationRequest resources representing prescribed medications and medication orders for an authenticated member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fhir",
+                "r4",
+                "MedicationRequest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patient",
+                  "value": "<string>",
+                  "description": "(Required) The FHIR Patient ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by medication request status (active, completed, stopped)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "patient/Patient.read patient/Coverage.read patient/ExplanationOfBenefit.read patient/Condition.read patient/Observation.read patient/MedicationRequest.read patient/Immunization.read patient/Encounter.read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://partners.centene.com/oauth2/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://partners.centene.com/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98c4d990-4180-424c-915d-d8ac063b408e",
+              "name": "Bundle of MedicationRequest resources returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fhir",
+                    "r4",
+                    "MedicationRequest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"Bundle\",\n  \"id\": \"string\",\n  \"type\": \"transaction\",\n  \"total\": 3449,\n  \"link\": [\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    },\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33e6e488-5bf5-4c24-890a-89f60e0a8023",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fhir",
+                    "r4",
+                    "MedicationRequest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.centene.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ea977667-954d-4e74-b126-0bc751fa2351",
+    "name": "WellCare FHIR Patient Access Condition Medication Request API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The WellCare FHIR Patient Access API enables members and authorized third-party applications to securely access and exchange health data including medical, pharmacy, dental, and vision claims and clinical information. The API supports HL7 FHIR R4 standards and SMART on FHIR authorization, providing access to up to 5 years of historical health information. Required under CMS Interoperability and Patient Access final rule (CMS-9115-F) for Medicaid and Medicare Advantage plans. Access is managed through the Centene Partner Portal at partners.centene.com/apis.",
+      "type": "text/plain"
+    }
+  }
+}

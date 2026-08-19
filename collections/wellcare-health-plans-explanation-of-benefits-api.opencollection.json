@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WellCare FHIR Patient Access Condition Explanation of Benefits API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Explanation of Benefits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Explanation of Benefit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/ExplanationOfBenefit",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The FHIR Patient ID to retrieve EOBs for."
+              },
+              {
+                "name": "service-date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by service date range (format YYYY-MM-DD or YYYY-MM-DD,YYYY-MM-DD)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by claim type (e.g., pharmacy, oral, vision, institutional, professional)."
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves Explanation of Benefit (EOB) resources representing adjudicated medical, pharmacy, dental, and vision claims for a member. Supports up to 5 years of historical claims data as required by CMS interoperability rules."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

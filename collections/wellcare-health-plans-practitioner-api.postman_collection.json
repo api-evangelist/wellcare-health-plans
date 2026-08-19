@@ -1,0 +1,278 @@
+{
+  "item": [
+    {
+      "id": "25d71fa6-b2c3-45f7-8b4e-b4061a30b0cf",
+      "name": "Practitioner",
+      "description": {
+        "content": "Individual healthcare practitioners and clinicians.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "548b0689-6aad-435a-89ba-23f3e72e7d38",
+          "name": "Search Practitioners",
+          "request": {
+            "name": "Search Practitioners",
+            "description": {
+              "content": "Searches for healthcare practitioners in the WellCare provider directory by name, specialty, NPI, or location. Returns practitioner demographic information, credentials, and specialties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fhir",
+                "r4",
+                "Practitioner"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Practitioner name (partial match supported)."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier",
+                  "value": "<string>",
+                  "description": "NPI or other practitioner identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "specialty",
+                  "value": "<string>",
+                  "description": "NUCC taxonomy code or specialty name."
+                },
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "<integer>",
+                  "description": "Number of results per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a461d253-b0e5-4749-a653-60d88c0a0dff",
+              "name": "Bundle of Practitioner resources returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fhir",
+                    "r4",
+                    "Practitioner"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "specialty",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"Bundle\",\n  \"id\": \"string\",\n  \"type\": \"searchset\",\n  \"total\": 2807,\n  \"link\": [\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    },\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ce00724-11b3-4f98-b843-c88de8cfdf1e",
+          "name": "Get Practitioner",
+          "request": {
+            "name": "Get Practitioner",
+            "description": {
+              "content": "Retrieves a specific practitioner resource by FHIR ID, returning full demographic and credential information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fhir",
+                "r4",
+                "Practitioner",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The FHIR Practitioner resource ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "658ff7d9-d5c3-4fd8-b4eb-006eeb0c477b",
+              "name": "Practitioner resource returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fhir",
+                    "r4",
+                    "Practitioner",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The FHIR Practitioner resource ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"Practitioner\",\n  \"id\": \"string\",\n  \"identifier\": [\n    {\n      \"system\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"system\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"name\": [\n    {\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"family\": \"string\",\n      \"given\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cbe0144-5260-44b2-8fa3-cac2c43c44b9",
+              "name": "Practitioner not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fhir",
+                    "r4",
+                    "Practitioner",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The FHIR Practitioner resource ID."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.centene.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b8b5a310-a44b-4511-8a24-e1f1a42f06f9",
+    "name": "WellCare FHIR Patient Access Condition Practitioner API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The WellCare FHIR Patient Access API enables members and authorized third-party applications to securely access and exchange health data including medical, pharmacy, dental, and vision claims and clinical information. The API supports HL7 FHIR R4 standards and SMART on FHIR authorization, providing access to up to 5 years of historical health information. Required under CMS Interoperability and Patient Access final rule (CMS-9115-F) for Medicaid and Medicare Advantage plans. Access is managed through the Centene Partner Portal at partners.centene.com/apis.",
+      "type": "text/plain"
+    }
+  }
+}

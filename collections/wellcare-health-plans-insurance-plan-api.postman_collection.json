@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "f3ccb53d-4933-43dd-9d38-65c905ef5d52",
+      "name": "Insurance Plan",
+      "description": {
+        "content": "Insurance plan details including networks and coverage areas.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "151d75f4-922a-49d1-98d5-5bc054364e05",
+          "name": "Search Insurance Plans",
+          "request": {
+            "name": "Search Insurance Plans",
+            "description": {
+              "content": "Retrieves WellCare insurance plan details including plan types, network coverage areas, benefit categories, and cost-sharing information for Medicaid and Medicare Advantage plans.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fhir",
+                "r4",
+                "InsurancePlan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Insurance plan name."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Plan type (e.g., HMO, PPO, SNP)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5ace4900-5850-4577-9822-9a709fd02733",
+              "name": "Bundle of InsurancePlan resources returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fhir",
+                    "r4",
+                    "InsurancePlan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"Bundle\",\n  \"id\": \"string\",\n  \"type\": \"collection\",\n  \"total\": 9304,\n  \"link\": [\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    },\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.centene.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3ee9ccfe-c37e-48dc-bfd3-0468dfc8b3a1",
+    "name": "WellCare FHIR Patient Access Condition Insurance Plan API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The WellCare FHIR Patient Access API enables members and authorized third-party applications to securely access and exchange health data including medical, pharmacy, dental, and vision claims and clinical information. The API supports HL7 FHIR R4 standards and SMART on FHIR authorization, providing access to up to 5 years of historical health information. Required under CMS Interoperability and Patient Access final rule (CMS-9115-F) for Medicaid and Medicare Advantage plans. Access is managed through the Centene Partner Portal at partners.centene.com/apis.",
+      "type": "text/plain"
+    }
+  }
+}

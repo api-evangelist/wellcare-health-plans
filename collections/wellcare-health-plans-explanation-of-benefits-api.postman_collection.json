@@ -1,0 +1,234 @@
+{
+  "item": [
+    {
+      "id": "95fdac6e-36f4-4ef2-84d6-c71385d154b2",
+      "name": "Explanation of Benefits",
+      "description": {
+        "content": "Claims and EOB data for medical, pharmacy, dental, and vision.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2eebb8a7-b1ba-4a9e-aa1a-cf0e10e39186",
+          "name": "List Explanation of Benefit",
+          "request": {
+            "name": "List Explanation of Benefit",
+            "description": {
+              "content": "Retrieves Explanation of Benefit (EOB) resources representing adjudicated medical, pharmacy, dental, and vision claims for a member. Supports up to 5 years of historical claims data as required by CMS interoperability rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fhir",
+                "r4",
+                "ExplanationOfBenefit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "patient",
+                  "value": "<string>",
+                  "description": "(Required) The FHIR Patient ID to retrieve EOBs for."
+                },
+                {
+                  "disabled": false,
+                  "key": "service-date",
+                  "value": "<string>",
+                  "description": "Filter by service date range (format YYYY-MM-DD or YYYY-MM-DD,YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by claim type (e.g., pharmacy, oral, vision, institutional, professional)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_count",
+                  "value": "<integer>",
+                  "description": "Number of results per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/fhir+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "patient/Patient.read patient/Coverage.read patient/ExplanationOfBenefit.read patient/Condition.read patient/Observation.read patient/MedicationRequest.read patient/Immunization.read patient/Encounter.read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://partners.centene.com/oauth2/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://partners.centene.com/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4d1e806d-5f69-4082-8b89-f3b1f210cc08",
+              "name": "Bundle of ExplanationOfBenefit resources returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fhir",
+                    "r4",
+                    "ExplanationOfBenefit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service-date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/fhir+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/fhir+json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"Bundle\",\n  \"id\": \"string\",\n  \"type\": \"transaction\",\n  \"total\": 9129,\n  \"link\": [\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"relation\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"entry\": [\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    },\n    {\n      \"fullUrl\": \"string\",\n      \"resource\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65580f6b-3511-42dd-99ff-8566da7bd9dd",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fhir",
+                    "r4",
+                    "ExplanationOfBenefit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "patient",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "service-date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_count",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.centene.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "50e7653f-e6cd-4fa9-96cb-d88542064cc3",
+    "name": "WellCare FHIR Patient Access Condition Explanation of Benefits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The WellCare FHIR Patient Access API enables members and authorized third-party applications to securely access and exchange health data including medical, pharmacy, dental, and vision claims and clinical information. The API supports HL7 FHIR R4 standards and SMART on FHIR authorization, providing access to up to 5 years of historical health information. Required under CMS Interoperability and Patient Access final rule (CMS-9115-F) for Medicaid and Medicare Advantage plans. Access is managed through the Centene Partner Portal at partners.centene.com/apis.",
+      "type": "text/plain"
+    }
+  }
+}

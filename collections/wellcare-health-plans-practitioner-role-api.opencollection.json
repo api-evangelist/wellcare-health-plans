@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WellCare FHIR Patient Access Condition Practitioner Role API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Practitioner Role",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Practitioner Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/PractitionerRole",
+            "params": [
+              {
+                "name": "practitioner",
+                "value": "",
+                "type": "query",
+                "description": "FHIR Practitioner ID."
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "FHIR Organization ID."
+              },
+              {
+                "name": "specialty",
+                "value": "",
+                "type": "query",
+                "description": "Specialty taxonomy code."
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "query",
+                "description": "FHIR Location ID."
+              }
+            ]
+          },
+          "docs": "Searches for practitioner roles defining a practitioner's relationship with a healthcare organization and network, including specialties, accepted insurance plans, and care location affiliations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

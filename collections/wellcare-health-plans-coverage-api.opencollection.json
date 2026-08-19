@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WellCare FHIR Patient Access Condition Coverage API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Coverage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Coverage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/Coverage",
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The FHIR Patient ID to retrieve coverage for."
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              },
+              {
+                "name": "_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://partners.centene.com/oauth2/authorize",
+              "accessTokenUrl": "https://partners.centene.com/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves insurance coverage resources for a member, including plan details, enrollment period, group information, and benefit categories for medical, pharmacy, dental, and vision coverage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

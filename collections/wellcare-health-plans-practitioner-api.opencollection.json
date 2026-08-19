@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WellCare FHIR Patient Access Condition Practitioner API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Practitioner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Practitioners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/Practitioner",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Practitioner name (partial match supported)."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "NPI or other practitioner identifier."
+              },
+              {
+                "name": "specialty",
+                "value": "",
+                "type": "query",
+                "description": "NUCC taxonomy code or specialty name."
+              },
+              {
+                "name": "_count",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "Searches for healthcare practitioners in the WellCare provider directory by name, specialty, NPI, or location. Returns practitioner demographic information, credentials, and specialties."
+        },
+        {
+          "info": {
+            "name": "Get Practitioner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/Practitioner/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The FHIR Practitioner resource ID."
+              }
+            ]
+          },
+          "docs": "Retrieves a specific practitioner resource by FHIR ID, returning full demographic and credential information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

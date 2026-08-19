@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WellCare FHIR Patient Access Condition Insurance Plan API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insurance Plan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Insurance Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.centene.com/fhir/r4/InsurancePlan",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Insurance plan name."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Plan type (e.g., HMO, PPO, SNP)."
+              }
+            ]
+          },
+          "docs": "Retrieves WellCare insurance plan details including plan types, network coverage areas, benefit categories, and cost-sharing information for Medicaid and Medicare Advantage plans."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
