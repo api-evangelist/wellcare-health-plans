@@ -194,6 +194,8 @@ apis:
   humanURL: https://www.wellcare.com/en/interoperability-and-patient-access
   baseURL: https://partners.centene.com
   tags:
+  - InsurancePlan
+  tags_raw:
   - Insurance Plan
   properties:
   - type: OpenAPI
@@ -250,6 +252,8 @@ apis:
   humanURL: https://www.wellcare.com/en/interoperability-and-patient-access
   baseURL: https://partners.centene.com
   tags:
+  - MedicationRequest
+  tags_raw:
   - Medication Request
   properties:
   - type: OpenAPI
@@ -390,6 +394,8 @@ apis:
   humanURL: https://www.wellcare.com/en/interoperability-and-patient-access
   baseURL: https://partners.centene.com
   tags:
+  - PractitionerRole
+  tags_raw:
   - Practitioner Role
   properties:
   - type: OpenAPI
