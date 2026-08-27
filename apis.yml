@@ -1,4 +1,5 @@
 aid: wellcare-health-plans
+name: "WellCare Health Plans"
 specificationVersion: '0.23'
 accessModel:
   pricing: freemium
