@@ -37,6 +37,11 @@ description: >-
   access as required by CMS Interoperability and Patient Access final rules (CMS-9115-F). The Centene Developer Partner
   Portal at partners.centene.com/apis provides access to WellCare FHIR APIs.
 common:
+  - type: ParentCompany
+    url: https://apis.io/providers/centene-corporation/
+    name: Centene Corporation
+    x-relationship: acquired
+    x-evidence: "WellCare Health Plans was a managed care company that focused exclusively on government-sponsored managed care services through Medicaid, Medicare Advantage, and Medicare Prescription Drug Plans before being acquired by Centene Corporation."
   - type: AgenticAccess
     url: agentic-access/wellcare-health-plans-agentic-access.yml
   - type: DomainSecurity
@@ -206,7 +211,7 @@ apis:
   humanURL: https://www.wellcare.com/en/interoperability-and-patient-access
   baseURL: https://partners.centene.com
   tags:
-  - InsurancePlan
+  - Insurance Plan
   tags_raw:
   - Insurance Plan
   properties:
@@ -264,7 +269,7 @@ apis:
   humanURL: https://www.wellcare.com/en/interoperability-and-patient-access
   baseURL: https://partners.centene.com
   tags:
-  - MedicationRequest
+  - Medication Request
   tags_raw:
   - Medication Request
   properties:
@@ -406,7 +411,7 @@ apis:
   humanURL: https://www.wellcare.com/en/interoperability-and-patient-access
   baseURL: https://partners.centene.com
   tags:
-  - PractitionerRole
+  - Practitioner Role
   tags_raw:
   - Practitioner Role
   properties:
