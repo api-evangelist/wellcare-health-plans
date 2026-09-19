@@ -355,6 +355,8 @@ apis:
   humanURL: https://www.wellcare.com/en/interoperability-and-patient-access
   baseURL: https://partners.centene.com
   tags:
+  - Patients
+  tags_raw:
   - Patient
   properties:
   - type: OpenAPI
