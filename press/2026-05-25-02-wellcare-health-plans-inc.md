@@ -1,7 +1,9 @@
 ---
 title: WellCare Health Plans, Inc.
 url: https://www.sec.gov/enforcement-litigation/litigation-releases/lr-21044
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"WellCare Health Plans" press release artificial intelligence'
 position: 2
 source: serpapi-google

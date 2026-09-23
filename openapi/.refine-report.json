@@ -1,19 +1,8 @@
 {
   "provider": "wellcare-health-plans",
   "sources": [
-    "wellcare-health-plans-condition-api-openapi.yml",
-    "wellcare-health-plans-coverage-api-openapi.yml",
-    "wellcare-health-plans-encounter-api-openapi.yml",
-    "wellcare-health-plans-explanation-of-benefits-api-openapi.yml",
-    "wellcare-health-plans-immunization-api-openapi.yml",
-    "wellcare-health-plans-insurance-plan-api-openapi.yml",
-    "wellcare-health-plans-location-api-openapi.yml",
-    "wellcare-health-plans-medication-request-api-openapi.yml",
-    "wellcare-health-plans-observation-api-openapi.yml",
-    "wellcare-health-plans-organization-api-openapi.yml",
-    "wellcare-health-plans-patient-api-openapi.yml",
-    "wellcare-health-plans-practitioner-api-openapi.yml",
-    "wellcare-health-plans-practitioner-role-api-openapi.yml"
+    "_original/wellcare-fhir-patient-access-api-openapi.yml",
+    "_original/wellcare-fhir-provider-directory-api-openapi.yml"
   ],
   "outputs": [
     "wellcare-health-plans-condition-api-openapi.yml",
@@ -21,18 +10,37 @@
     "wellcare-health-plans-encounter-api-openapi.yml",
     "wellcare-health-plans-explanation-of-benefits-api-openapi.yml",
     "wellcare-health-plans-immunization-api-openapi.yml",
-    "wellcare-health-plans-insurance-plan-api-openapi.yml",
-    "wellcare-health-plans-location-api-openapi.yml",
     "wellcare-health-plans-medication-request-api-openapi.yml",
     "wellcare-health-plans-observation-api-openapi.yml",
-    "wellcare-health-plans-organization-api-openapi.yml",
     "wellcare-health-plans-patient-api-openapi.yml",
+    "wellcare-health-plans-insurance-plan-api-openapi.yml",
+    "wellcare-health-plans-location-api-openapi.yml",
+    "wellcare-health-plans-organization-api-openapi.yml",
     "wellcare-health-plans-practitioner-api-openapi.yml",
     "wellcare-health-plans-practitioner-role-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wellcare-fhir-patient-access-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "wellcare-fhir-provider-directory-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "wellcare-health-plans-condition-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-coverage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-encounter-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-explanation-of-benefits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-immunization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-insurance-plan-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-location-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-medication-request-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-observation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-organization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-patient-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-practitioner-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wellcare-health-plans-practitioner-role-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
