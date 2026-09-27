@@ -75,6 +75,29 @@ paths:
           description: Organization not found.
 components:
   schemas:
+    Organization:
+      type: object
+      description: A FHIR Organization resource representing a healthcare organization.
+      properties:
+        resourceType:
+          type: string
+          example: Organization
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: array
+          items:
+            type: object
+        address:
+          type: array
+          items:
+            type: object
+        telecom:
+          type: array
+          items:
+            type: object
     Bundle:
       type: object
       description: A FHIR Bundle resource containing a collection of resources.
@@ -109,29 +132,6 @@ components:
                 type: string
               resource:
                 type: object
-    Organization:
-      type: object
-      description: A FHIR Organization resource representing a healthcare organization.
-      properties:
-        resourceType:
-          type: string
-          example: Organization
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: array
-          items:
-            type: object
-        address:
-          type: array
-          items:
-            type: object
-        telecom:
-          type: array
-          items:
-            type: object
   securitySchemes:
     bearerAuth:
       type: http

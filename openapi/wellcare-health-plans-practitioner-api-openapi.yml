@@ -75,6 +75,39 @@ paths:
           description: Practitioner not found.
 components:
   schemas:
+    Practitioner:
+      type: object
+      description: A FHIR Practitioner resource representing a healthcare clinician.
+      properties:
+        resourceType:
+          type: string
+          example: Practitioner
+        id:
+          type: string
+        identifier:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                type: string
+              value:
+                type: string
+        name:
+          type: array
+          items:
+            type: object
+            properties:
+              family:
+                type: string
+              given:
+                type: array
+                items:
+                  type: string
+        qualification:
+          type: array
+          items:
+            type: object
     Bundle:
       type: object
       description: A FHIR Bundle resource containing a collection of resources.
@@ -109,39 +142,6 @@ components:
                 type: string
               resource:
                 type: object
-    Practitioner:
-      type: object
-      description: A FHIR Practitioner resource representing a healthcare clinician.
-      properties:
-        resourceType:
-          type: string
-          example: Practitioner
-        id:
-          type: string
-        identifier:
-          type: array
-          items:
-            type: object
-            properties:
-              system:
-                type: string
-              value:
-                type: string
-        name:
-          type: array
-          items:
-            type: object
-            properties:
-              family:
-                type: string
-              given:
-                type: array
-                items:
-                  type: string
-        qualification:
-          type: array
-          items:
-            type: object
   securitySchemes:
     bearerAuth:
       type: http
