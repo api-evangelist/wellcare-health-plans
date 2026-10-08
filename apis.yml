@@ -37,6 +37,12 @@ description: >-
   access as required by CMS Interoperability and Patient Access final rules (CMS-9115-F). The Centene Developer Partner
   Portal at partners.centene.com/apis provides access to WellCare FHIR APIs.
 common:
+  - type: Plans
+    url: plans/wellcare-health-plans-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/wellcare-health-plans-rate-limits.yml
+  - type: FinOps
+    url: finops/wellcare-health-plans-finops.yml
   - type: ParentCompany
     url: https://apis.io/providers/centene-corporation/
     name: Centene Corporation
