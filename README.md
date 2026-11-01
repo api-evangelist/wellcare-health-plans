@@ -1,4 +1,4 @@
-# wellcare-health-plans (wellcare-health-plans)
+# WellCare Health Plans
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,78 +66,184 @@
 
 WellCare Health Plans was a managed care company that focused exclusively on government-sponsored managed care services through Medicaid, Medicare Advantage, and Medicare Prescription Drug Plans before being acquired by Centene Corporation. Now operating under Centene, WellCare provides FHIR- compliant APIs for interoperability and patient access as required by CMS Interoperability and Patient Access final rules (CMS-9115-F). The Centene Developer Partner Portal at partners.centene.com/apis provides access to WellCare FHIR APIs.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/wellcare-health-plans/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/wellcare-health-plans/refs/heads/main/apis.yml)
+**Areas:** Fortune 500
 
-## Timestamps
+## WellCare Health Plans on APIs.io
 
-- **Modified:** 2026-05-19
+Everything profiled for WellCare Health Plans is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/wellcare-health-plans/](https://apis.io/providers/wellcare-health-plans/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (13)
 
-### WellCare FHIR Patient Access API
+- [wellcare-health-plans Condition API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-condition-api/) — Member diagnosed conditions and clinical data.
+- [wellcare-health-plans Coverage API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-coverage-api/) — Member insurance coverage and enrollment information.
+- [wellcare-health-plans Encounter API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-encounter-api/) — Member care encounters and visits.
+- [wellcare-health-plans Explanation of Benefits API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-explanation-of-benefits-api/) — Claims and EOB data for medical, pharmacy, dental, and vision.
+- [wellcare-health-plans Immunization API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-immunization-api/) — Immunization records and history.
+- [wellcare-health-plans Insurance Plan API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-insurance-plan-api/) — Insurance plan details including networks and coverage areas.
+- [wellcare-health-plans Location API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-location-api/) — Physical care delivery locations and addresses.
+- [wellcare-health-plans Medication Request API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-medication-request-api/) — Prescribed medications and medication orders.
+- [wellcare-health-plans Observation API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-observation-api/) — Clinical observations, lab results, and vital signs.
+- [wellcare-health-plans Organization API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-organization-api/) — Healthcare organizations, hospitals, and facilities.
+- [wellcare-health-plans Patient API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-patient-api/) — Patient demographic and identity resources.
+- [wellcare-health-plans Practitioner API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-practitioner-api/) — Individual healthcare practitioners and clinicians.
+- [wellcare-health-plans Practitioner Role API](https://apis.io/apis/wellcare-health-plans/wellcare-health-plans-practitioner-role-api/) — A practitioner's role within an organization and network.
 
-The WellCare FHIR Patient Access API enables members and authorized third-party applications to securely access and exchange health data including medical, pharmacy, dental, and vision claims and clinical information. The API supports HL7 FHIR R4 standards and SMART on FHIR authorization, providing access to up to 5 years of historical health information. Required under CMS Interoperability and Patient Access final rule (CMS-9115-F) for Medicaid and Medicare Advantage plans.
+### Published properties
 
-- **Human URL:** [https://www.wellcare.com/en/interoperability-and-patient-access](https://www.wellcare.com/en/interoperability-and-patient-access)
-- **Base URL:** `https://partners.centene.com`
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-#### Tags
+#### Agentic access (1)
 
-- Healthcare
-- FHIR
-- Interoperability
-- Patient Access
-- Managed Care
-- Medicaid
-- Medicare
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Properties
+- [Wellcare Health Plans Agentic Access](https://apis.io/agentic-access/wellcare-health-plans/wellcare-health-plans-agentic-access/)
 
-- [Documentation](https://www.wellcare.com/en/interoperability-and-patient-access)
-- [Portal](https://partners.centene.com/apis)
-- [OpenAPI](openapi/wellcare-fhir-patient-access-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/wellcare-fhir-patient-access-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/wellcare-fhir-patient-access-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/wellcare-fhir-patient-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/wellcare-fhir-eob-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/wellcare-fhir-patient-structure.json)
-- [Example](examples/wellcare-fhir-patient-access-api-getPatient-example.json)
-- [Example](examples/wellcare-fhir-patient-access-api-listExplanationOfBenefit-example.json)
-- [Spectral Ruleset](rules/wellcare-health-plans-rules.yml)
+#### JSON Schema (2)
 
-### WellCare FHIR Provider Directory API
+The data models the API reads and writes.
 
-The WellCare FHIR Provider Directory API provides access to up-to-date provider directory information, enabling third-party applications to query in-network physicians, specialists, hospitals, and other healthcare providers. The API follows HL7 FHIR R4 standards and Da Vinci Provider Directory implementation guide (PDex Plan-Net), supporting CMS interoperability requirements for Medicaid and Medicare Advantage plans.
+- [WellCare FHIR Explanation of Benefit](https://apis.io/schemas/wellcare-health-plans/wellcare-fhir-eob/)
+- [WellCare FHIR Patient](https://apis.io/schemas/wellcare-health-plans/wellcare-fhir-patient/)
 
-- **Human URL:** [https://www.wellcare.com/en/interoperability-and-patient-access](https://www.wellcare.com/en/interoperability-and-patient-access)
-- **Base URL:** `https://partners.centene.com`
+#### JSON Structure (1)
 
-#### Tags
+Data models expressed in JSON Structure.
 
-- Healthcare
-- FHIR
-- Interoperability
-- Provider Directory
-- Managed Care
-- Medicaid
-- Medicare
+- [Wellcare Fhir Patient Structure](https://apis.io/json-structure/wellcare-health-plans/wellcare-fhir-patient-structure/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://www.wellcare.com/en/interoperability-and-patient-access)
-- [Portal](https://partners.centene.com/apis)
-- [OpenAPI](openapi/wellcare-fhir-provider-directory-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/wellcare-fhir-provider-directory-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/wellcare-fhir-provider-directory-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/wellcare-fhir-provider-directory-api-searchPractitioners-example.json)
-- [Spectral Ruleset](rules/wellcare-health-plans-rules.yml)
+Linked-data contexts for the provider's vocabulary.
 
-## Common Properties
+- [Wellcare Health Plans Context](https://apis.io/jsonld/wellcare-health-plans/wellcare-health-plans-context/)
 
-- [LinkedIn](https://www.linkedin.com/company/wellcare)
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Wellcare Health Plans Vocabulary](https://apis.io/vocabularies/wellcare-health-plans/wellcare-health-plans-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Wellcare Fhir Patient Access Api Getpatient Example](https://apis.io/examples/wellcare-health-plans/wellcare-fhir-patient-access-api-getPatient-example/)
+- [Wellcare Fhir Patient Access Api Listexplanationofbenefit Example](https://apis.io/examples/wellcare-health-plans/wellcare-fhir-patient-access-api-listExplanationOfBenefit-example/)
+- [Wellcare Fhir Provider Directory Api Searchpractitioners Example](https://apis.io/examples/wellcare-health-plans/wellcare-fhir-provider-directory-api-searchPractitioners-example/)
+
+#### Collections (15)
+
+Postman and Open Collection request collections.
+
+- [WellCare FHIR Patient Access API](https://apis.io/collections/wellcare-health-plans/open-wellcare-fhir-patient-access-api/)
+- [WellCare FHIR Provider Directory API](https://apis.io/collections/wellcare-health-plans/open-wellcare-fhir-provider-directory-api/)
+- [WellCare FHIR Patient Access Condition API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-condition-api/)
+- [WellCare FHIR Patient Access Condition Coverage API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-coverage-api/)
+- [WellCare FHIR Patient Access Condition Encounter API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-encounter-api/)
+- [WellCare FHIR Patient Access Condition Explanation of Benefits API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-explanation-of-benefits-api/)
+- [WellCare FHIR Patient Access Condition Immunization API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-immunization-api/)
+- [WellCare FHIR Patient Access Condition Insurance Plan API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-insurance-plan-api/)
+- [WellCare FHIR Patient Access Condition Location API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-location-api/)
+- [WellCare FHIR Patient Access Condition Medication Request API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-medication-request-api/)
+- [WellCare FHIR Patient Access Condition Observation API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-observation-api/)
+- [WellCare FHIR Patient Access Condition Organization API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-organization-api/)
+- [WellCare FHIR Access Condition Patient API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-patient-api/)
+- [WellCare FHIR Patient Access Condition Practitioner API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-practitioner-api/)
+- [WellCare FHIR Patient Access Condition Practitioner Role API](https://apis.io/collections/wellcare-health-plans/open-wellcare-health-plans-practitioner-role-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [WellCare Health Plans — jsonschema rules](https://apis.io/rules/wellcare-health-plans/wellcare-health-plans-jsonschema-spectral-rules/)
+- [WellCare Health Plans API Rules](https://apis.io/rules/wellcare-health-plans/wellcare-health-plans-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Wellcare Health Plans Authentication](https://apis.io/security/wellcare-health-plans/wellcare-health-plans-authentication/)
+- [Wellcare Health Plans Domain Security](https://apis.io/security/wellcare-health-plans/wellcare-health-plans-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Wellcare Health Plans Scopes](https://apis.io/scopes/wellcare-health-plans/wellcare-health-plans-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Wellcare Health Plans Plans Pricing](https://apis.io/plans/wellcare-health-plans/wellcare-health-plans-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Wellcare Health Plans Rate Limits](https://apis.io/rate-limits/wellcare-health-plans/wellcare-health-plans-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Wellcare Health Plans Finops](https://apis.io/finops/wellcare-health-plans/wellcare-health-plans-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.wellcare.com)
-- [Developer Portal](https://partners.centene.com/apis)
-- [Interoperability Portal](https://www.wellcare.com/en/interoperability-and-patient-access)
-- [Git Hub Org](https://github.com/wellcare-health-plans)
-- [J S O N L D Context](json-ld/wellcare-health-plans-context.jsonld)
-- [Vocabulary](vocabulary/wellcare-health-plans-vocabulary.yml)
+
+## API Evangelist rating
+
+**Kin Score 34.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 51.8 |
+| Contract quality | 67.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 7.9 |
+
+**Agent readiness 28.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/wellcare-health-plans/](https://apis.io/providers/wellcare-health-plans/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for WellCare Health Plans: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/wellcare-health-plans/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
